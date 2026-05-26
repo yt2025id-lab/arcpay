@@ -8,13 +8,19 @@ import { useInvoiceRead, useInvoiceWrite, useIssuerInvoices, useRecipientInvoice
 import { useApproveUsdc, useUsdcAllowance } from "@/hooks/usePaymentLink";
 import { formatAddress, formatUsdc } from "@/lib/utils";
 import { useTxStatus, TxToast } from "@/lib/useTxStatus";
+import { useWalletReady } from "@/lib/useWalletReady";
 
 export default function InvoicesPage() {
   const { address, isConnected } = useAccount();
+  const { ready } = useWalletReady();
   const { data: addresses } = useFactoryAddresses();
   const invoiceAddr = addresses?.[1] as `0x${string}` | undefined;
   const { data: issuedByMe } = useIssuerInvoices(invoiceAddr!, address!);
   const { data: issuedToMe } = useRecipientInvoices(invoiceAddr!, address!);
+
+  if (!ready) {
+    return <div className="flex items-center justify-center min-h-[80vh]"><div className="w-8 h-8 border-3 border-arc-green border-t-transparent rounded-full animate-spin" /></div>;
+  }
 
   if (!isConnected) {
     return (

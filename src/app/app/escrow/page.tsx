@@ -8,12 +8,18 @@ import { useEscrowRead, useEscrowWrite, useUserEscrows } from "@/hooks/useEscrow
 import { useApproveUsdc, useUsdcAllowance } from "@/hooks/usePaymentLink";
 import { formatAddress, formatUsdc } from "@/lib/utils";
 import { useTxStatus, TxToast } from "@/lib/useTxStatus";
+import { useWalletReady } from "@/lib/useWalletReady";
 
 export default function EscrowPage() {
   const { address, isConnected } = useAccount();
+  const { ready } = useWalletReady();
   const { data: addresses } = useFactoryAddresses();
   const escrowAddr = addresses?.[3] as `0x${string}` | undefined;
   const { data: myEscrows } = useUserEscrows(escrowAddr!, address!);
+
+  if (!ready) {
+    return <div className="flex items-center justify-center min-h-[80vh]"><div className="w-8 h-8 border-3 border-arc-green border-t-transparent rounded-full animate-spin" /></div>;
+  }
 
   if (!isConnected) {
     return (

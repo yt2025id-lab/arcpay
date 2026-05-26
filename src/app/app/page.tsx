@@ -5,11 +5,17 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useFactoryAddresses } from "@/hooks/useArcPayFactory";
 import { useUsdcBalance } from "@/hooks/usePaymentLink";
 import { formatAddress, formatUsdc } from "@/lib/utils";
+import { useWalletReady } from "@/lib/useWalletReady";
 
 export default function DashboardPage() {
   const { address, isConnected } = useAccount();
+  const { ready } = useWalletReady();
   const { data: addresses, isLoading: addrsLoading } = useFactoryAddresses();
   const { data: usdcBalance } = useUsdcBalance(address!);
+
+  if (!ready) {
+    return <div className="flex items-center justify-center min-h-[80vh]"><div className="w-8 h-8 border-3 border-arc-green border-t-transparent rounded-full animate-spin" /></div>;
+  }
 
   if (!isConnected) {
     return (
