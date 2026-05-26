@@ -44,11 +44,11 @@ export default function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#how-it-works" className="inline-flex items-center gap-3 bg-arc-black text-arc-green neo-border-thick rounded-xl px-8 py-5 font-mono text-lg font-black neo-shadow-hover">
+            <a href="/app" className="inline-flex items-center gap-3 bg-arc-black text-arc-green neo-border-thick rounded-xl px-8 py-5 font-mono text-lg font-black neo-shadow-hover">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
               </svg>
-              Create Your Payment Link
+              Launch App
             </a>
             <a href="#milestones" className="inline-flex items-center gap-2 bg-arc-white text-arc-black neo-border-thick rounded-xl px-8 py-5 font-mono text-lg font-black neo-shadow-hover">
               View Roadmap

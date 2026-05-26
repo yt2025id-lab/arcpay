@@ -104,7 +104,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <a href="#cta" className="nav-cta bg-arc-green neo-border-thick rounded-xl px-5 py-2.5 font-mono text-sm font-black neo-shadow-hover hidden sm:inline-flex">
+            <a href="/app" className="nav-cta bg-arc-green neo-border-thick rounded-xl px-5 py-2.5 font-mono text-sm font-black neo-shadow-hover hidden sm:inline-flex">
               Launch App
             </a>
             <button
@@ -147,7 +147,7 @@ export default function Navbar() {
               </a>
             );
           })}
-          <a href="#cta" onClick={() => setMobileOpen(false)} className="block mt-3 bg-arc-green neo-border-thick rounded-xl px-5 py-3 font-mono text-sm font-black text-center neo-shadow">
+          <a href="/app" onClick={() => setMobileOpen(false)} className="block mt-3 bg-arc-green neo-border-thick rounded-xl px-5 py-3 font-mono text-sm font-black text-center neo-shadow">
             Launch App
           </a>
         </div>
