@@ -6,7 +6,6 @@ import Stats from "@/components/Stats";
 import CompetitiveEdge from "@/components/CompetitiveEdge";
 import Milestones from "@/components/Milestones";
 import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
@@ -39,7 +38,6 @@ export default function DocsPage() {
               { href: "#competitive-edge", label: "Competitive Edge" },
               { href: "#milestones", label: "Roadmap" },
               { href: "#testimonials", label: "Testimonials" },
-              { href: "#faq", label: "FAQ" },
             ].map((l) => (
               <a
                 key={l.href}
@@ -59,7 +57,6 @@ export default function DocsPage() {
         <CompetitiveEdge />
         <Milestones />
         <Testimonials />
-        <FAQ />
       </div>
       <Footer />
       <BackToTop />

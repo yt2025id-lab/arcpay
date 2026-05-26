@@ -1,50 +1,40 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 
 export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
 
-  const links = [
-    { href: "#how-it-works", label: "How It Works" },
-    { href: "#features", label: "Features" },
-    { href: "/docs", label: "Docs" },
-    { href: "#faq", label: "FAQ" },
-  ];
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const links = isHome
+    ? [
+        { href: "#how-it-works", label: "How It Works" },
+        { href: "#features", label: "Features" },
+        { href: "/docs", label: "Docs" },
+        { href: "/faq", label: "FAQ" },
+      ]
+    : [
+        { href: "/", label: "Home" },
+        { href: "/docs", label: "Docs" },
+        { href: "/faq", label: "FAQ" },
+        { href: "/app", label: "App" },
+      ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const sections = links.map((l) => l.href.replace("#", ""));
-    const observers: IntersectionObserver[] = [];
-
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(id);
-          }
-        },
-        { rootMargin: "-40% 0px -55% 0px" }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
+    setScrolled(window.scrollY > 20);
+  }, [pathname]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -61,13 +51,13 @@ export default function Navbar() {
       ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-arc-white/95 backdrop-blur-lg neo-border-thick border-t-0 border-l-0 border-r-0 shadow-[0_4px_0_0_#1a1a1a]"
+          ? "bg-arc-white/95 backdrop-blur-lg border-b-2 border-arc-black shadow-[0_4px_0_0_#1a1a1a]"
           : "bg-arc-white/80 backdrop-blur-md border-b border-arc-black/5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          <a href="#" className="nav-logo flex items-center gap-2">
+          <a href="/" className="nav-logo flex items-center gap-2">
             <div className="w-9 h-9 sm:w-10 sm:h-10 bg-arc-green neo-border rounded-lg flex items-center justify-center neo-shadow">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -78,24 +68,21 @@ export default function Navbar() {
             </span>
           </a>
 
-          <div className="hidden lg:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-6">
             {links.map((l) => {
-              const id = l.href.replace("#", "");
-              const isActive = activeSection === id;
+              const isExternal = l.href.startsWith("/");
+              const isActive = isExternal ? pathname === l.href : false;
               return (
                 <a
                   key={l.href}
                   href={l.href}
-                  className={`nav-link font-mono text-[13px] font-bold transition-all duration-200 relative ${
+                  className={`nav-link font-mono text-sm font-bold transition-all duration-200 ${
                     isActive
                       ? "text-arc-green"
                       : "text-arc-black/60 hover:text-arc-green"
                   }`}
                 >
                   {l.label}
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-arc-green rounded-full" />
-                  )}
                 </a>
               );
             })}
@@ -128,23 +115,17 @@ export default function Navbar() {
           mobileOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-arc-white neo-border-thick border-t-0 border-l-0 border-r-0 px-4 pb-4">
-          {links.map((l) => {
-            const id = l.href.replace("#", "");
-            const isActive = activeSection === id;
-            return (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setMobileOpen(false)}
-                className={`block py-3 font-mono text-sm font-bold border-b border-arc-black/5 last:border-0 transition-colors ${
-                  isActive ? "text-arc-green" : "text-arc-black/70 hover:text-arc-green"
-                }`}
-              >
-                {l.label}
-              </a>
-            );
-          })}
+        <div className="bg-arc-white border-b-2 border-arc-black px-4 pb-4">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setMobileOpen(false)}
+              className="block py-3 font-mono text-sm font-bold border-b border-arc-black/5 last:border-0 text-arc-black/70 hover:text-arc-green transition-colors"
+            >
+              {l.label}
+            </a>
+          ))}
           <a href="/app" onClick={() => setMobileOpen(false)} className="block mt-3 bg-arc-green neo-border-thick rounded-xl px-5 py-3 font-mono text-sm font-black text-center neo-shadow">
             Launch App
           </a>
