@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# session files
+session-*.md
+
+# concept docs
+konsep*/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -1,26 +1,200 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #FFFBEB;
+  --color-foreground: #1a1a1a;
+  --color-arc-yellow: #FFE600;
+  --color-arc-pink: #FF6B9D;
+  --color-arc-blue: #4ECDC4;
+  --color-arc-purple: #A855F7;
+  --color-arc-lime: #BFFF00;
+  --color-arc-orange: #FF8A00;
+  --color-arc-green: #00D084;
+  --color-arc-black: #1a1a1a;
+  --color-arc-white: #FFFBEB;
+  --color-arc-card: #FFFFFF;
+  --color-arc-dark: #0A0F1E;
+  --color-arc-border: #1E2A3B;
+  --color-arc-mint: #00FFB3;
+  --color-accent: #FFD166;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #FFE600;
+  color: #1a1a1a;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-arc-white);
+  color: var(--color-arc-black);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+[id] {
+  scroll-margin-top: 80px;
+}
+
+.neo-shadow {
+  box-shadow: 4px 4px 0px 0px #1a1a1a;
+}
+
+.neo-shadow-lg {
+  box-shadow: 6px 6px 0px 0px #1a1a1a;
+}
+
+.neo-shadow-hover {
+  box-shadow: 4px 4px 0px 0px #1a1a1a;
+  transition: all 0.15s ease;
+}
+
+.neo-shadow-hover:hover {
+  box-shadow: 2px 2px 0px 0px #1a1a1a;
+  transform: translate(2px, 2px);
+}
+
+.neo-shadow-hover:active {
+  box-shadow: 0px 0px 0px 0px #1a1a1a;
+  transform: translate(4px, 4px);
+}
+
+.neo-border {
+  border: 2.5px solid #1a1a1a;
+}
+
+.neo-border-thick {
+  border: 3px solid #1a1a1a;
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track-reverse {
+  display: flex;
+  animation: marquee-reverse 35s linear infinite;
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.text-stroke {
+  -webkit-text-stroke: 2.5px #1a1a1a;
+  color: transparent;
+}
+
+.gradient-text-green {
+  background: linear-gradient(135deg, #00D084 0%, #4ECDC4 50%, #1A6BFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #FFE600 0%, #FF6B9D 50%, #A855F7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 3s ease-in-out 1s infinite;
+}
+
+.step-connector {
+  position: relative;
+}
+
+.step-connector::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -1rem;
+  width: 1rem;
+  height: 3px;
+  background: #1a1a1a;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes slide-up-fade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slide-up-fade 0.6s ease-out forwards;
+}
+
+@media (max-width: 767px) {
+  .step-connector::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
