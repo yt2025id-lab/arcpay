@@ -49,29 +49,25 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-arc-white/95 backdrop-blur-lg border-b-2 border-arc-black shadow-[0_4px_0_0_#1a1a1a]"
-          : "bg-arc-white/80 backdrop-blur-md border-b border-arc-black/5"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-arc-white border-b-2 border-arc-black shadow-[0_4px_0_0_#1a1a1a]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          <a href="/" className="nav-logo flex items-center gap-2">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-arc-green neo-border rounded-lg flex items-center justify-center neo-shadow">
+        <div className="flex items-center justify-between h-16">
+          <a href="/" className="nav-logo flex items-center gap-2 shrink-0">
+            <div className="w-9 h-9 bg-arc-green neo-border rounded-lg flex items-center justify-center neo-shadow">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
               </svg>
             </div>
-            <span className="text-xl sm:text-2xl font-black tracking-tight">
+            <span className="text-xl font-black tracking-tight">
               ARC<span className="text-arc-green">Pay</span>
             </span>
           </a>
 
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
             {links.map((l) => {
-              const isExternal = l.href.startsWith("/");
-              const isActive = isExternal ? pathname === l.href : false;
+              const isPage = l.href.startsWith("/");
+              const isActive = isPage ? pathname === l.href : false;
               return (
                 <a
                   key={l.href}
@@ -89,12 +85,15 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <a href="/app" className="nav-cta bg-arc-green neo-border-thick rounded-xl px-5 py-2.5 font-mono text-sm font-black neo-shadow-hover hidden sm:inline-flex">
+            <a href="/app" className="nav-cta bg-arc-green neo-border-thick rounded-xl px-5 py-2 font-mono text-sm font-black neo-shadow-hover inline-flex items-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
               Launch App
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden w-10 h-10 neo-border rounded-lg flex items-center justify-center bg-arc-white"
+              className="md:hidden w-10 h-10 neo-border rounded-lg flex items-center justify-center bg-arc-white"
               aria-label="Toggle navigation"
               aria-expanded={mobileOpen}
             >
@@ -111,11 +110,11 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
           mobileOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-arc-white border-b-2 border-arc-black px-4 pb-4">
+        <div className="bg-arc-white border-t-2 border-arc-black px-4 pb-4">
           {links.map((l) => (
             <a
               key={l.href}
@@ -126,9 +125,6 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-          <a href="/app" onClick={() => setMobileOpen(false)} className="block mt-3 bg-arc-green neo-border-thick rounded-xl px-5 py-3 font-mono text-sm font-black text-center neo-shadow">
-            Launch App
-          </a>
         </div>
       </div>
     </nav>
