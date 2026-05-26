@@ -66,16 +66,16 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-          <a href="#how-it-works" className="hero-cta bg-arc-green neo-border-thick rounded-xl px-8 py-4 font-mono text-lg font-black neo-shadow-hover inline-flex items-center gap-2">
+          <a href="/app" className="hero-cta bg-arc-green neo-border-thick rounded-xl px-8 py-4 font-mono text-lg font-black neo-shadow-hover inline-flex items-center gap-2">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
             </svg>
-            Create Payment Link
+            Launch App
           </a>
-          <a href="#circle-stack" className="hero-cta bg-arc-white neo-border-thick rounded-xl px-8 py-4 font-mono text-lg font-black neo-shadow-hover inline-flex items-center gap-2">
-            View Circle Integration
+          <a href="#how-it-works" className="hero-cta bg-arc-white neo-border-thick rounded-xl px-8 py-4 font-mono text-lg font-black neo-shadow-hover inline-flex items-center gap-2">
+            How It Works
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M7 17l9.2-9.2M17 17V7H7" />
+              <polyline points="6 9 12 15 18 9" />
             </svg>
           </a>
         </div>

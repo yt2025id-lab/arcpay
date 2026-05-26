@@ -50,7 +50,7 @@ export default function CTA() {
               </svg>
               Launch App
             </a>
-            <a href="#milestones" className="inline-flex items-center gap-2 bg-arc-white text-arc-black neo-border-thick rounded-xl px-8 py-5 font-mono text-lg font-black neo-shadow-hover">
+            <a href="/docs#milestones" className="inline-flex items-center gap-2 bg-arc-white text-arc-black neo-border-thick rounded-xl px-8 py-5 font-mono text-lg font-black neo-shadow-hover">
               View Roadmap
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="9 18 15 12 9 6" />
