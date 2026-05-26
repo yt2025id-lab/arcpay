@@ -70,7 +70,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Top header bar - always visible */}
-      <header className="fixed top-0 left-0 right-0 z-[60] h-14 bg-arc-dark border-b-2 border-arc-black flex items-center justify-between px-4">
+      <header className="fixed top-0 left-0 right-0 z-[90] h-14 bg-arc-dark border-b-2 border-arc-black flex items-center justify-between px-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -106,12 +106,12 @@ export default function Sidebar() {
 
       {/* Mobile overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 bg-black/50 z-[70] md:hidden" onClick={() => setMobileOpen(false)} />
+        <div className="fixed inset-0 bg-black/50 z-[55] md:hidden" onClick={() => setMobileOpen(false)} />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-14 left-0 bottom-0 w-64 bg-arc-dark border-r-2 border-arc-black flex flex-col z-[80] transition-transform duration-300 ${
+        className={`fixed top-14 left-0 bottom-0 w-64 bg-arc-dark border-r-2 border-arc-black flex flex-col z-[60] transition-transform duration-300 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
