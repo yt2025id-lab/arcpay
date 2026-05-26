@@ -6,37 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const problems = [
-  {
-    num: "01",
-    title: "Payment primitives on Arc don't exist",
-    desc: "Arc has USDC native, sub-1s finality, and Paymaster — but zero 'payment link' tools. This is the most critical missing layer.",
-    badge: "Critical Gap",
-    badgeColor: "bg-arc-orange",
-  },
-  {
-    num: "02",
-    title: "Stripe & PayPal exclude 450M+ people",
-    desc: "450M+ in SEA, Africa, Latin America have no bank access. Stripe needs KYC. PayPal blocks developing nations. Freelancers lose 5-8% per transaction.",
-    badge: "450M Excluded",
-    badgeColor: "bg-arc-yellow",
-  },
-  {
-    num: "03",
-    title: "Web3 invoicing is still primitive",
-    desc: "Request Network, Superfluid — all require volatile gas tokens, complex wallets, and lack consumer-grade UX. Adoption near-zero outside DeFi power users.",
-    badge: "Poor UX/DX",
-    badgeColor: "bg-arc-pink",
-  },
-  {
-    num: "04",
-    title: "B2B needs privacy — blockchain doesn't",
-    desc: "Salaries, B2B invoices, sensitive deals can't be public on transparent chains. Arc has opt-in privacy — but no payment layer uses it.",
-    badge: "Enterprise Blocker",
-    badgeColor: "bg-arc-purple",
-  },
-];
-
 const features = [
   {
     icon: (
@@ -115,69 +84,36 @@ export default function Features() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.from(".problem-heading", { y: 60, opacity: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true } });
-    gsap.from(".problem-card", { y: 80, opacity: 0, duration: 0.7, stagger: 0.12, ease: "back.out(1.4)", scrollTrigger: { trigger: ".problem-grid", start: "top 80%", once: true } });
-    gsap.from(".solution-heading", { y: 60, opacity: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: ".solution-section", start: "top 75%", once: true } });
+    gsap.from(".solution-heading", { y: 60, opacity: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true } });
     gsap.from(".feature-card", { y: 80, opacity: 0, duration: 0.7, stagger: 0.1, ease: "back.out(1.4)", scrollTrigger: { trigger: ".features-grid", start: "top 80%", once: true } });
   }, []);
 
   return (
-    <>
-      <section ref={sectionRef} id="problem" className="relative py-20 sm:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="problem-heading text-center mb-16">
-            <p className="font-mono text-sm font-bold text-arc-black/40 uppercase tracking-widest mb-4">Why ArcPay Needs to Exist</p>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight">
-              Problem <span className="text-arc-orange">Statement</span>
-            </h2>
-          </div>
-
-          <div className="problem-grid grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-            {problems.map((p) => (
-              <div key={p.num} className="problem-card bg-arc-card neo-border-thick rounded-2xl p-6 sm:p-8 neo-shadow-lg hover:translate-y-[-4px] transition-transform duration-200">
-                <div className="flex items-start gap-4">
-                  <span className="text-4xl sm:text-5xl font-black text-arc-black/10 font-mono leading-none">{p.num}</span>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3 flex-wrap">
-                      <h3 className="text-base sm:text-lg font-bold">{p.title}</h3>
-                      <span className={`${p.badgeColor} neo-border rounded-lg px-3 py-1 font-mono text-[10px] font-black`}>{p.badge}</span>
-                    </div>
-                    <p className="text-sm text-arc-black/50 leading-relaxed">{p.desc}</p>
-                  </div>
-                </div>
-              </div>
+    <section ref={sectionRef} id="features" className="relative py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="solution-heading text-center mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+            {badges.map((badge, i) => (
+              <span key={i} className={`${badge.color} neo-border-thick rounded-lg px-4 py-2 font-mono text-sm font-black`}>{badge.text}</span>
             ))}
           </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight">
+            This is crypto payments<br /><span className="gradient-text-green">done right.</span>
+          </h2>
         </div>
-      </section>
 
-      <section id="features" className="solution-section relative py-20 sm:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="solution-heading text-center mb-16">
-            <p className="font-mono text-sm font-bold text-arc-black/40 uppercase tracking-widest mb-4">ArcPay: The Missing Payment Layer</p>
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-              {badges.map((badge, i) => (
-                <span key={i} className={`${badge.color} neo-border-thick rounded-lg px-4 py-2 font-mono text-sm font-black`}>{badge.text}</span>
-              ))}
+        <div className="features-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {features.map((feature, i) => (
+            <div key={i} className="feature-card bg-arc-card neo-border-thick rounded-2xl p-6 neo-shadow-lg hover:translate-y-[-4px] transition-transform duration-200 group">
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`${feature.tagColor} neo-border rounded-lg p-2.5 group-hover:scale-110 transition-transform duration-200`}>{feature.icon}</div>
+                <span className={`${feature.tagColor} neo-border rounded-lg px-3 py-1 font-mono text-xs font-black`}>{feature.tag}</span>
+              </div>
+              <p className="text-base font-bold leading-snug">{feature.title}</p>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight">
-              This is crypto payments<br /><span className="gradient-text-green">done right.</span>
-            </h2>
-          </div>
-
-          <div className="features-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {features.map((feature, i) => (
-              <div key={i} className="feature-card bg-arc-card neo-border-thick rounded-2xl p-6 sm:p-8 neo-shadow-lg hover:translate-y-[-4px] transition-transform duration-200 group">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className={`${feature.tagColor} neo-border rounded-lg p-2.5 group-hover:scale-110 transition-transform duration-200`}>{feature.icon}</div>
-                  <span className={`${feature.tagColor} neo-border rounded-lg px-3 py-1 font-mono text-xs font-black`}>{feature.tag}</span>
-                </div>
-                <p className="text-lg sm:text-xl font-bold leading-snug">{feature.title}</p>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

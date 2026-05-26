@@ -12,9 +12,7 @@ export default function Navbar() {
   const links = [
     { href: "#how-it-works", label: "How It Works" },
     { href: "#features", label: "Features" },
-    { href: "#circle-stack", label: "Circle Stack" },
-    { href: "#architecture", label: "Architecture" },
-    { href: "#milestones", label: "Roadmap" },
+    { href: "/docs", label: "Docs" },
     { href: "#faq", label: "FAQ" },
   ];
 

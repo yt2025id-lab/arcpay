@@ -118,7 +118,7 @@ export default function HowItWorks() {
                 Payer on Ethereum or Solana? CCTP bridges USDC to Arc automatically. One invoice, pay from any chain. Settlement still &lt;1s on Arc.
               </p>
             </div>
-            <a href="#architecture" className="bg-arc-yellow neo-border-thick rounded-xl px-5 py-2.5 font-mono text-sm font-black neo-shadow-hover shrink-0">
+            <a href="/docs#architecture" className="bg-arc-yellow neo-border-thick rounded-xl px-5 py-2.5 font-mono text-sm font-black neo-shadow-hover shrink-0">
               See Architecture
             </a>
           </div>

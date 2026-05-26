@@ -8,16 +8,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const footerLinks = {
   Resources: [
-    { label: "Documentation", href: "#architecture" },
-    { label: "GitHub", href: "https://github.com/arcpay" },
-    { label: "API Reference", href: "#architecture" },
-    { label: "SDK Guide", href: "#features" },
+    { label: "Documentation", href: "/docs" },
+    { label: "GitHub", href: "https://github.com/yt2025id-lab/arcpay" },
+    { label: "Architecture", href: "/docs#architecture" },
+    { label: "Roadmap", href: "/docs#milestones" },
   ],
   Protocol: [
-    { label: "Payment Links", href: "#features" },
-    { label: "Smart Invoices", href: "#features" },
-    { label: "Revenue Split", href: "#features" },
-    { label: "Escrow", href: "#features" },
+    { label: "Payment Links", href: "/app/payment-links" },
+    { label: "Smart Invoices", href: "/app/invoices" },
+    { label: "Revenue Split", href: "/app/splits" },
+    { label: "Escrow", href: "/app/escrow" },
   ],
   Community: [
     { label: "Discord", href: "#" },
@@ -27,7 +27,7 @@ const footerLinks = {
   ],
   Legal: [
     { label: "Terms", href: "#" },
-    { label: "Privacy", href: "#faq" },
+    { label: "Privacy", href: "/docs#faq" },
   ],
 };
 
